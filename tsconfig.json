@@ -1,0 +1,5 @@
+{
+    "extends": "@tsconfig/node18/tsconfig.json",
+    "include": ["lib/**/*"],
+    "exclude": ["node_modules", "lib/**/*.test.ts"]
+  }

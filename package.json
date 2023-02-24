@@ -1,0 +1,30 @@
+{
+  "name": "@guardian/eslint-plugin-tsdoc-required",
+  "version": "0.1.0",
+  "description": "Require exported members to have a TSDoc comment.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "esbuild --bundle --platform=node --outfile=index.js lib/index.ts",
+    "watch": "esbuild --watch --bundle --platform=node --outfile=index.js lib/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/guardian/eslint-tsdoc-required"
+  },
+  "author": "nicolas.long@theguardian.com",
+  "license": "ISC",
+  "prettier": "@guardian/prettier",
+  "devDependencies": {
+    "@guardian/prettier": "^3.0.0",
+    "@microsoft/tsdoc": "^0.14.2",
+    "@tsconfig/node18": "^1.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.53.0",
+    "esbuild": "^0.17.10",
+    "eslint": "^8.34.0",
+    "prettier": "^2.8.4",
+    "ts-jest": "^29.0.5",
+    "typescript": "^4.9.5"
+  }
+}
