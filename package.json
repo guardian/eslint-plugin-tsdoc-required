@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "build": "esbuild --bundle --platform=node --outfile=index.js lib/index.ts",
-    "watch": "esbuild --watch --bundle --platform=node --outfile=index.js lib/index.ts"
+    "watch": "esbuild --watch --bundle --platform=node --outfile=index.js lib/index.ts",
+    "format": "prettier -w --fix lib/**"
   },
   "repository": {
     "type": "git",
