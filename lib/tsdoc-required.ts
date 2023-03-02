@@ -85,9 +85,14 @@ export const tsdocRequiredRule = createRule({
 			// Check any (directly) exported members
 			ExportNamedDeclaration(node) {
 				const sourceCode = context.getSourceCode();
-				check(context, sourceCode, node);
+				const child = node.declaration;
+				if (child && child.type === 'TSInterfaceDeclaration') {
+					if (child.id.name.includes('Props')) {
+						return; // we don't require comments on Props
+					}
+				}
 
-				// if contents are interface check members
+				check(context, sourceCode, node);
 			},
 		};
 	},
