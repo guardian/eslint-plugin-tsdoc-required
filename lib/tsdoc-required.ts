@@ -32,7 +32,18 @@ const check = (
 		return;
 	}
 
+	const before = sourceCode.getTokenBefore(node);
+
 	const firstComment = comments[0];
+
+	if (before && before.range[1] > firstComment.range[0]) {
+		// comment is for something else
+		context.report({
+			messageId: 'missingDocstring',
+			node: node,
+		});
+		return;
+	}
 
 	if (firstComment.type != 'Block') {
 		context.report({
@@ -49,10 +60,7 @@ const check = (
 
 	for (const message of parserContext.log.messages) {
 		context.report({
-			loc: {
-				start: sourceCode.getLocFromIndex(message.textRange.pos),
-				end: sourceCode.getLocFromIndex(message.textRange.end),
-			},
+			node: node,
 			messageId: message.messageId,
 			data: {
 				unformattedText: message.unformattedText,

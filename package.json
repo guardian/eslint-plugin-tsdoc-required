@@ -1,6 +1,6 @@
 {
   "name": "@guardian/eslint-plugin-tsdoc-required",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Require exported members to have a TSDoc comment.",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,7 @@
     "@guardian/prettier": "^3.0.0",
     "@microsoft/tsdoc": "^0.14.2",
     "@tsconfig/node18": "^1.0.1",
+    "@types/jest": "^29.4.0",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",
     "esbuild": "^0.17.10",

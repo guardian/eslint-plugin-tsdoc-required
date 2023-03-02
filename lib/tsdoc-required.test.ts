@@ -4,16 +4,21 @@ import { tsdocRequiredRule } from './tsdoc-required';
 const valid = `
 const foo = "bar";
 
-/**
- * Example valid comment.
- */
+/** Example valid comment. */
 export interface GuFoo {}`;
 
 const invalidDocstring = `
 // Example invalid comment.
 export interface GuFoo {}`;
 
-const missingDocstring = `
+const missingDocStringWithPreceedingComment = `
+/* Some comment. */
+import { Duration, SecretValue, Tags } from "aws-cdk-lib";
+
+export interface GuFoo {}
+`;
+
+const missingDocstringOnProperty = `
 /**
  * Example valid comment.
  */
@@ -35,7 +40,7 @@ describe('docs', () => {
 	const ruleTester = new ESLintUtils.RuleTester({
 		parser: '@typescript-eslint/parser',
 		parserOptions: {
-			project: '../../tsconfig.json',
+			project: '../tsconfig.json',
 			tsconfigRootDir: __dirname,
 		},
 	});
@@ -48,7 +53,14 @@ describe('docs', () => {
 				code: invalidDocstring,
 				errors: [{ messageId: 'invalidCommentFormat' }],
 			},
-			{ code: missingDocstring, errors: [{ messageId: 'missingDocstring' }] },
+			{
+				code: missingDocstringOnProperty,
+				errors: [{ messageId: 'missingDocstring' }],
+			},
+			{
+				code: missingDocStringWithPreceedingComment,
+				errors: [{ messageId: 'missingDocstring' }],
+			},
 		],
 	});
 });
